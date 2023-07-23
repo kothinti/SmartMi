@@ -1,0 +1,133 @@
+/* MagicMirror² Config Sample
+ *
+ * By Michael Teeuw https://michaelteeuw.nl
+ * MIT Licensed.
+ *
+ * For more information on how you can configure this file
+ * see https://docs.magicmirror.builders/configuration/introduction.html
+ * and https://docs.magicmirror.builders/modules/configuration.html
+ *
+ * You can use environment variables using a `config.js.template` file instead of `config.js`
+ * which will be converted to `config.js` while starting. For more information
+ * see https://docs.magicmirror.builders/configuration/introduction.html#enviromnent-variables
+ */
+let config = {
+    address: "localhost",
+    port: 8080,
+    basePath: "/",
+    ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],
+
+    useHttps: false,
+    httpsPrivateKey: "", 
+    httpsCertificate: "",
+
+    language: "en",
+    locale: "en-US",
+    logLevel: ["INFO", "LOG", "WARN", "ERROR"],
+    timeFormat: 24,
+    units: "metric",
+
+    modules: [
+        {
+            module: "alert",
+        },
+        {
+            module: "updatenotification",
+            position: "top_bar"
+        },
+        {
+            module: "clock",
+            position: "top_left"
+        },
+        {
+            module: "calendar",
+            header: "Your Day Planner",
+            position: "top_left",
+            config: {
+                calendars: [
+                    {
+                        fetchInterval: 7 * 24 * 60 * 60 * 1000,
+                        symbol: "calendar-check",
+                        url: "https://drive.google.com/uc?export=download&id=14eNCdaUEYX7dvOU7XMqEu8el3njKR6Vj"
+                    }
+                ]
+            }
+        },
+        {
+            module: "compliments",
+            position: "lower_third",
+            
+            config: {
+                updateInterval: 5000,
+                fadeSeed: 2000,
+                compliments: {
+                    anytime: [
+                        "Every moment matters",
+                        "Small steps make big journeys",
+                        "Smile and keep smiling"
+                    ],
+                    morning: [
+                        "Today is a new oppourtunity",
+                        "Wake up and be awesome!",
+                        "Looking good today!"
+                    ],
+                    afternoon: [
+                        "Halfway to the stars",
+                        "This afternoon remember you can"
+                    ],
+                    evening: [
+                        "Rest and recharge for a new tomorrow",
+                        "Let the day go with a smile!"
+                    ],
+                    "....-01-01": [
+                        "Happy new year!"
+                    ]
+                }
+            }
+        
+        },
+        {
+            module: "weather",
+            position: "top_right",
+            header: "Weather Forcast",
+            config: {
+                weatherProvider: "openweathermap",
+                type: "current",
+                locationID: "1267701",
+                apiKey: "41113dbb43982521edd28474c0d2002c",
+            }
+        },
+        {
+            module: "newsfeed",
+            position: "bottom_bar",
+            config: {
+                feeds: [
+                    {
+                        title: "DPS News",
+                        url: "https://east.dpsbangalore.edu.in/feed/"
+                    }
+                ],
+                showSourceTitle: true,
+                showPublishDate: true,
+                broadcastNewsFeeds: true,
+                broadcastNewsUpdates: true
+            }
+        },
+        {
+            module: "MMM-Remote-Control-Repository",
+        },
+        {
+            module: "MMM-NowPlayingOnSpotify",
+            position: "bottom_right",
+            config: {
+                clientID: "685c23fb6dc44ee2acbe4256892d0f6f",
+                clientSecret: "6b6c3e6f2c9c470492f1f77403cabd41",
+                accessToken: "BQCLApwLaci44s2Ou24xnFhPFIWjpNcIudkSsa-mfd6B2Zwx5nsxlbkg6ASSD4shWvVnXPFtD43HeCGCUj95yVzT0gQIJcgagWiFw2stNiXdBATuoKizAf7j6sfLrJlwfzY9g07DTDOatXEmLoKtjiJGt_CE3eBzbQE2rrqAuf-6HjEQXPHzf8D_GryC766RYfqmHRGp40pIdw",
+                refreshToken: "AQCF68vv1OJKfiNJhJ5MXWfu7iHUdm_5WuK23rDZZcNg-d79MF7L0s0ODl8LZK1RECmvWnA10wUACKsQJ5e80sI3P0CgphHmXEq2KF_GYpDrcSdPHaEKaOyExijxzZTU8A8"
+            }
+        },
+    ]
+}
+
+/*************** DO NOT EDIT THE LINE BELOW ***************/
+if (typeof module !== "undefined") {module.exports = config;}
